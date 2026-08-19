@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Feliz Cumpleaños Mi Nerrito!</title>
-    <!-- Canvas Confetti Library (para la lluvia de confeti) -->
+    <!-- Canvas Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         * {
@@ -26,7 +26,7 @@
 
         .card {
             background: rgba(255, 255, 255, 0.95);
-            padding: 35px 25px;
+            padding: 40px 25px;
             border-radius: 24px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             text-align: center;
@@ -42,18 +42,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .img-container {
-            width: 100%;
-            max-height: 180px;
-            overflow: hidden;
-            border-radius: 16px;
+        /* Encabezado con Emojis (Reemplaza los GIFs para evitar errores) */
+        .emoji-header {
+            font-size: 4.5rem;
             margin-bottom: 15px;
-        }
-
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            line-height: 1;
+            display: block;
         }
 
         h1 {
@@ -66,7 +60,7 @@
         p {
             color: #4a5568;
             font-size: 1.05em;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             line-height: 1.5;
         }
 
@@ -118,7 +112,6 @@
             color: #4a5568;
         }
 
-        /* Esencial para el botón que huye */
         #btnSeguro {
             position: relative;
             z-index: 999;
@@ -133,13 +126,13 @@
             display: block;
         }
 
-        /* Estilo de Cuenta Regresiva para la pantalla de éxito */
+        /* Estilo para Cuenta Regresiva */
         .countdown-title {
             font-size: 0.85em;
             color: #888;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 15px;
+            margin-top: 20px;
             margin-bottom: 8px;
         }
 
@@ -174,9 +167,7 @@
     <div class="card">
         <!-- PANTALLA 1: Pregunta Inicial -->
         <div id="pantalla1" class="screen active">
-            <div class="img-container">
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWxlMWJ4N3cxb295MGV4N3I0Znhyb3c3dTVmYms0OXc0N2h1d2QyZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LzwCNLy3OKhcY/giphy.gif" alt="Celebración">
-            </div>
+            <span class="emoji-header">🎂🎉</span>
             <h1>¡Feliz cumpleaños mi nerrito! ❤️</h1>
             <p>¿Salimos a cenar?</p>
             <div class="btn-container-row">
@@ -187,9 +178,7 @@
 
         <!-- PANTALLA 2: Confirmación tras presionar NO -->
         <div id="pantallaPreguntaNo" class="screen">
-            <div class="img-container">
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Y2Z25ybDZ0cGJ4YmZzaXF1OWptZDRvdXZqczV0ZmpyOHY0dXNxeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/C1hk82jM2xkyQ/giphy.gif" alt="Sorprendido">
-            </div>
+            <span class="emoji-header">🧐👀</span>
             <h1>Ah, ¿es que no quieres, negro feísimo? 😤</h1>
             <p>¿Estás seguro?</p>
             <div class="btn-container">
@@ -198,13 +187,11 @@
             </div>
         </div>
 
-        <!-- PANTALLA 3: Éxito / Confirmación Final (SIN MÚSICA) -->
+        <!-- PANTALLA 3: Éxito / Confirmación Final -->
         <div id="pantallaExito" class="screen">
-            <div class="img-container">
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1ZHZ1bnRjcTJndXgybThyejBldHR0YWdrM2Q3eDRiZncybTV4dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/g5R9dok94mrIvJGm2a/giphy.gif" alt="Fiesta">
-            </div>
+            <span class="emoji-header">🥳🍕✨</span>
             <h1>¡Excelente nerrito! 🔥</h1>
-            <p>Te espero hoy a las 8:00 PM, te pones bonito. 😉<br><strong>Espero que vengas con hambre. 🍕✨</strong></p>
+            <p>Te espero hoy a las 8:00 PM, te pones bonito. 😉<br><strong>Espero que vengas con hambre.</strong></p>
 
             <div class="countdown-title">Tiempo restante para la cita:</div>
             <div class="countdown-container">
@@ -216,13 +203,11 @@
     </div>
 
     <script>
-        // Función de Navegación
         function irA(pantallaId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(pantallaId).classList.add('active');
         }
 
-        // Lógica del botón que huye
         function rodarBoton() {
             const btn = document.getElementById('btnSeguro');
             const padding = 20;
@@ -237,14 +222,9 @@
             btn.style.top = randomY + 'px';
         }
 
-        // Función de Éxito
         function aceptar() {
             irA('pantallaExito');
-            
-            // 1. Explosión de confeti
             LanzarConfeti();
-
-            // 2. Iniciar Cuenta Regresiva a las 8:00 PM de hoy
             iniciarContador();
         }
 
@@ -270,10 +250,10 @@
             function actualizar() {
                 const ahora = new Date();
                 const objetivo = new Date();
-                objetivo.setHours(20, 0, 0, 0); // 8:00 PM
+                objetivo.setHours(20, 0, 0, 0);
 
                 if (ahora > objetivo) {
-                    objetivo.setDate(objetivo.getDate() + 1); // Mañana si ya pasaron las 8 PM
+                    objetivo.setDate(objetivo.getDate() + 1);
                 }
 
                 const dif = objetivo - ahora;
