@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Feliz Cumpleaños Mi Nerrito!</title>
-    <!-- Librería para el Confeti -->
+    <!-- Canvas Confetti Library (para la lluvia de confeti) -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         * {
@@ -118,6 +118,7 @@
             color: #4a5568;
         }
 
+        /* Esencial para el botón que huye */
         #btnSeguro {
             position: relative;
             z-index: 999;
@@ -132,6 +133,7 @@
             display: block;
         }
 
+        /* Estilo de Cuenta Regresiva para la pantalla de éxito */
         .countdown-title {
             font-size: 0.85em;
             color: #888;
@@ -196,7 +198,7 @@
             </div>
         </div>
 
-        <!-- PANTALLA 3: Éxito / Confirmación -->
+        <!-- PANTALLA 3: Éxito / Confirmación Final (SIN MÚSICA) -->
         <div id="pantallaExito" class="screen">
             <div class="img-container">
                 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1ZHZ1bnRjcTJndXgybThyejBldHR0YWdrM2Q3eDRiZncybTV4dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/g5R9dok94mrIvJGm2a/giphy.gif" alt="Fiesta">
@@ -214,11 +216,13 @@
     </div>
 
     <script>
+        // Función de Navegación
         function irA(pantallaId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(pantallaId).classList.add('active');
         }
 
+        // Lógica del botón que huye
         function rodarBoton() {
             const btn = document.getElementById('btnSeguro');
             const padding = 20;
@@ -233,13 +237,14 @@
             btn.style.top = randomY + 'px';
         }
 
+        // Función de Éxito
         function aceptar() {
             irA('pantallaExito');
             
-            // Lluvia de Confeti
+            // 1. Explosión de confeti
             LanzarConfeti();
 
-            // Iniciar Reloj Regresivo a las 8:00 PM
+            // 2. Iniciar Cuenta Regresiva a las 8:00 PM de hoy
             iniciarContador();
         }
 
@@ -265,10 +270,10 @@
             function actualizar() {
                 const ahora = new Date();
                 const objetivo = new Date();
-                objetivo.setHours(20, 0, 0, 0);
+                objetivo.setHours(20, 0, 0, 0); // 8:00 PM
 
                 if (ahora > objetivo) {
-                    objetivo.setDate(objetivo.getDate() + 1);
+                    objetivo.setDate(objetivo.getDate() + 1); // Mañana si ya pasaron las 8 PM
                 }
 
                 const dif = objetivo - ahora;
