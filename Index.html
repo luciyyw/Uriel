@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Mi Nerrito!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px 25px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 440px;
+            width: 100%;
+            position: relative;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .emoji-banner {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        p {
+            color: #4a5568;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        /* Contenedor vertical para dar espacio limpio entre botones */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            min-height: 120px;
+            position: relative;
+        }
+
+        .btn-container-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            min-height: 80px;
+        }
+
+        button {
+            padding: 14px 24px;
+            font-size: 1.05em;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .btn-si {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        .btn-si:hover {
+            background-color: #ff2a51;
+            transform: scale(1.03);
+            box-shadow: 0 6px 18px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn-no {
+            background-color: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn-no:hover {
+            background-color: #cbd5e1;
+        }
+
+        #btnSeguro {
+            position: relative;
+            z-index: 999;
+            white-space: nowrap;
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .celebration {
+            font-size: 2em;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- PANTALLA 1: Pregunta Inicial -->
+        <div id="pantalla1" class="screen active">
+            <div class="emoji-banner">🎂🎉✨</div>
+            <h1>¡Feliz cumpleaños mi nerrito! ❤️</h1>
+            <p>¿Salimos a cenar?</p>
+            <div class="btn-container-row">
+                <button class="btn-si" style="width: auto;" onclick="irA('pantallaExito')">¡Sí!</button>
+                <button class="btn-no" style="width: auto;" onclick="irA('pantallaPreguntaNo')">No</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA 2: Confirmación tras presionar NO -->
+        <div id="pantallaPreguntaNo" class="screen">
+            <div class="emoji-banner">🤨👀</div>
+            <h1>Ah, ¿es que no quieres, negro feísimo? 😤</h1>
+            <p>¿Estás seguro?</p>
+            <div class="btn-container">
+                <button class="btn-si" onclick="irA('pantallaExito')">Era una broma, ¡sí quiero! 🥰</button>
+                <button id="btnSeguro" class="btn-no" onmouseenter="rodarBoton()" onclick="rodarBoton()" ontouchstart="rodarBoton()">Sí, estoy seguro</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA 3: Éxito / Confirmación -->
+        <div id="pantallaExito" class="screen">
+            <div class="emoji-banner">🥳🍔🥂</div>
+            <h1>¡Excelente nerrito! 🔥</h1>
+            <p>Te espero a las 8:00 PM, te pones bonito. 😉<br><br><strong>Espero que vengas con hambre. 🍕✨</strong></p>
+            <div class="celebration">🎉❤️🥳</div>
+        </div>
+    </div>
+
+    <script>
+        function irA(pantallaId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(pantallaId).classList.add('active');
+        }
+
+        function rodarBoton() {
+            const btn = document.getElementById('btnSeguro');
+            
+            const padding = 20;
+            const maxX = window.innerWidth - btn.offsetWidth - padding;
+            const maxY = window.innerHeight - btn.offsetHeight - padding;
+
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+
+            btn.style.position = 'fixed';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+        }
+    </script>
+</body>
+</html>
