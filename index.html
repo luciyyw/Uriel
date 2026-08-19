@@ -26,7 +26,7 @@
 
         .card {
             background: rgba(255, 255, 255, 0.95);
-            padding: 40px 25px;
+            padding: 45px 30px;
             border-radius: 24px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             text-align: center;
@@ -42,25 +42,17 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Encabezado con Emojis (Reemplaza los GIFs para evitar errores) */
-        .emoji-header {
-            font-size: 4.5rem;
-            margin-bottom: 15px;
-            line-height: 1;
-            display: block;
-        }
-
         h1 {
             color: #d63384;
-            font-size: 1.6em;
-            margin-bottom: 12px;
+            font-size: 1.8em;
+            margin-bottom: 15px;
             line-height: 1.3;
         }
 
         p {
             color: #4a5568;
-            font-size: 1.05em;
-            margin-bottom: 25px;
+            font-size: 1.1em;
+            margin-bottom: 30px;
             line-height: 1.5;
         }
 
@@ -84,8 +76,8 @@
         }
 
         button {
-            padding: 14px 24px;
-            font-size: 1.05em;
+            padding: 14px 28px;
+            font-size: 1.1em;
             font-weight: 700;
             border: none;
             border-radius: 50px;
@@ -126,14 +118,14 @@
             display: block;
         }
 
-        /* Estilo para Cuenta Regresiva */
+        /* Countdown Style */
         .countdown-title {
             font-size: 0.85em;
             color: #888;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 20px;
-            margin-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 10px;
         }
 
         .countdown-container {
@@ -145,13 +137,13 @@
 
         .time-box {
             background: #ffe6e8;
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 12px;
-            min-width: 60px;
+            min-width: 65px;
         }
 
         .time-box .num {
-            font-size: 1.3em;
+            font-size: 1.4em;
             font-weight: bold;
             color: #d63384;
         }
@@ -167,7 +159,6 @@
     <div class="card">
         <!-- PANTALLA 1: Pregunta Inicial -->
         <div id="pantalla1" class="screen active">
-            <span class="emoji-header">🎂🎉</span>
             <h1>¡Feliz cumpleaños mi nerrito! ❤️</h1>
             <p>¿Salimos a cenar?</p>
             <div class="btn-container-row">
@@ -178,7 +169,6 @@
 
         <!-- PANTALLA 2: Confirmación tras presionar NO -->
         <div id="pantallaPreguntaNo" class="screen">
-            <span class="emoji-header">🧐👀</span>
             <h1>Ah, ¿es que no quieres, negro feísimo? 😤</h1>
             <p>¿Estás seguro?</p>
             <div class="btn-container">
@@ -189,9 +179,8 @@
 
         <!-- PANTALLA 3: Éxito / Confirmación Final -->
         <div id="pantallaExito" class="screen">
-            <span class="emoji-header">🥳🍕✨</span>
             <h1>¡Excelente nerrito! 🔥</h1>
-            <p>Te espero hoy a las 8:00 PM, te pones bonito. 😉<br><strong>Espero que vengas con hambre.</strong></p>
+            <p>Te espero hoy a las 8:00 PM, te pones bonito. 😉<br><strong>Espero que vengas con hambre. 🍕✨</strong></p>
 
             <div class="countdown-title">Tiempo restante para la cita:</div>
             <div class="countdown-container">
